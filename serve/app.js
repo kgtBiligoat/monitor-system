@@ -9,6 +9,8 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
+const connectDb = require('./connnectDB.js')
+
 // error handler
 onerror(app)
 
