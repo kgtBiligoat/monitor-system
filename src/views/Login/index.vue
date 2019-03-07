@@ -40,12 +40,14 @@ import SignUp from './components/SignUp.vue'
     },
     components: { SignUp }
 })
-export default class App extends Vue {
+export default class Login extends Vue {
     signUp() {
         this.$data.isSignUpShow = true;
     }
 
-    signIn() {}
+    signIn() {
+        this.$router.push('/users')
+    }
 }
 </script>
 

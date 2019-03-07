@@ -7,7 +7,7 @@
             <el-form-item label="password:" prop="password" required>
                 <el-input v-model="form.password" placeholder="please write your password" show-password></el-input>
             </el-form-item>
-            <el-form-item label="checkPassword:" prop="checkPassword" required>
+            <el-form-item label="check:" prop="checkPassword" required>
                 <el-input v-model="form.checkPassword" placeholder="please check your password" show-password></el-input>
             </el-form-item>
             <el-form-item label="email:">
@@ -37,9 +37,9 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
     data() {
         var validateUser = (rule: any, value: string, callback: any) => {
             if (!value.trim()) {
-                return callback(new Error('password is not allowed be empty'))
+                return callback(new Error('username is not allowed be empty'))
             } else if (/\d|\s/.test(value.trim())) {
-                return callback(new Error('password should be alphabet'))
+                return callback(new Error('username should be alphabet'))
             }
             else {
                 callback()

@@ -12,12 +12,10 @@ export default new Router({
     {
       path: '',
       component: Login,
-      children: [
-        {
-          path: '/users',
-          component: Users
-        }
-      ]
     },
+    {
+      path: '/users',
+      component: Users      
+    }
   ],
 });
