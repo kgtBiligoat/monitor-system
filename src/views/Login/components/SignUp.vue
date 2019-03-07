@@ -13,6 +13,9 @@
             <el-form-item label="email:">
                 <el-input v-model="form.email" placeholder="please write your email"></el-input>
             </el-form-item>
+            <el-form-item label="phone:">
+                <el-input v-model="form.phone" placeholder="please write your phone"></el-input>
+            </el-form-item>
             <el-form-item label="sex:">
                 <el-radio v-model="form.sex" label="man"></el-radio>
                 <el-radio v-model="form.sex" label="women"></el-radio>
@@ -66,6 +69,7 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
                 checkPassword: '',
                 email: '',
                 sex: 'man',
+                phone: ''
             },      
             rules: {
                 username: [
