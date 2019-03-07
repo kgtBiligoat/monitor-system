@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="sign up" :before-close="closeDialog" :visible.sync="isShow">
+    <el-dialog title="sign up" :before-close="closeDialog" :visible.sync="isShow" status-icon>
         <el-form label-width="80px" :model="form" ref="elForm" :rules="rules">
             <el-form-item label="username:" prop="username" required>
                 <el-input v-model="form.username" placeholder="please write your username"></el-input>
@@ -34,7 +34,6 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
     data() {
         var validateUser = (rule: any, value: string, callback: any) => {
             if (!value.trim()) {
-                console.log(1111)
                 return callback(new Error('password is not allowed be empty'))
             } else if (/\d|\s/.test(value.trim())) {
                 return callback(new Error('password should be alphabet'))
@@ -51,7 +50,6 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
             }
         }
         var validateCheck = (rule: any, value: string, callback: any) => {
-            console.log(this.$data.form.checkPassword ,value)
             if (!value) {
                 return callback(new Error('password is not allowed be empty'))
             } else if (this.$data.form.password !== value) {
@@ -96,26 +94,29 @@ export default class SignUp extends Vue {
 
     @Watch("isSignUpShow", { immediate: true }) 
     watchIsSignUpShow() {
-        console.log(1)
         this.$data.isShow = this.isSignUpShow;
     }
 
     isEmpty(formName: string) {
-        (this.$refs[formName] as any).validate((valid: any) => {
-            if (valid) {
-                return true
-            } else {
-                return false
-            }
-        });
+        return new Promise((resolve: any) => {
+            (this.$refs[formName] as any).validate((valid: any) => {
+                if (!valid) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            });   
+        })
     }
 
-    submit() {
-        let isEmpty = this.isEmpty('elForm') as any
+    async submit() {
+        let isEmpty =  await this.isEmpty('elForm') as any
         if(!isEmpty) {
             console.log('提交')
+            //TODO
         } else {
             console.log('校验')
+            //TODO 
         }
     }
 
