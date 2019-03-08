@@ -45,8 +45,25 @@ export default class Login extends Vue {
         this.$data.isSignUpShow = true;
     }
 
-    signIn() {
-        this.$router.push('/users')
+    async signIn() {
+        let param = {
+            ...this.$data
+        }
+        let data = await this.$store.dispatch('signIn', param)
+        if(data.status === 1) {                
+            this.$message({
+                message: data.msg,
+                type: 'success'
+            });
+            setTimeout(() => {
+                this.$router.push('/users')
+            }, 1000)
+        } else {
+            this.$message({
+                message: data.msg,
+                type: 'error'
+            });            
+        }
     }
 }
 </script>

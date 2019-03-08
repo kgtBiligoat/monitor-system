@@ -1,9 +1,8 @@
-import { UserMsg } from '@/store/userMsg/state.ts'
-
 const mutations = {
-    setUserInfo: (state: UserMsg, payload: UserMsg) => {
-        state = { ...payload }
-        console.log(state) /** test */
+    setUserInfo: (state: any, payload: any) => {
+        Object.keys(payload.data).forEach((item: string) => {
+            state[item] = payload.data[item]
+        })
     }
 }
 

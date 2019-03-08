@@ -1,4 +1,5 @@
 export interface UserMsg {
+    _id: String
     username: String
     password: String
     phone: Number
@@ -7,6 +8,7 @@ export interface UserMsg {
 }
 
 export let state: UserMsg = {
+    _id: '',
     username: '',
     password: '',
     phone: -1,

@@ -3,12 +3,13 @@ import request from '@/api/index.ts'
 const actions = {
     async signUp(context: any, payload: any) {
         let params = { ...payload }
-        let resPayload = request({
+        let resPayload = await request({
             method: 'post',
             url: '/signUp',
-            params: params
+            data: params
         })
-        context.commit('setUserInfo', resPayload)
+        context.commit('setUserInfo', resPayload.data)
+        return resPayload.data
     },
 
     async signIn(context: any, payload: any) {
@@ -16,12 +17,13 @@ const actions = {
             username: payload.username,
             password: payload.password
         }
-        let resPayload = request({
+        let resPayload = await request({
             method: 'post',
             url: '/signIn',
-            params: params
+            data: params
         })
-        context.commit('setUserInfo', resPayload)
+        context.commit('setUserInfo', resPayload.data)
+        return resPayload.data
     }
 }
 

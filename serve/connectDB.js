@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
 
-mongoose.connect("mongodb://127.0.0.1/monitorSystem");
+mongoose.connect("mongodb://127.0.0.1/monitor");
 
 let db = mongoose.connection
 

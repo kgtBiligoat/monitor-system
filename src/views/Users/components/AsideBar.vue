@@ -1,8 +1,9 @@
 <template>
+
     <el-menu
         default-active="1"
         class="el-menu-vertical-demo"  
-        :collapse="isCollapse"  
+        :collapse="isCollapse" 
     >
         <img 
             src="@/assets/login.png" 
@@ -11,8 +12,9 @@
             top:40px;
             "
         >
-        <el-menu-item index="0" style="margin-bottom: 100px;">
+        <el-menu-item index="0" style="margin-bottom: 100px; display: flex; justify-content: center; align-items: center;">
             <i class="el-icon-menu iconfont" @click="constrolSideBar"></i>
+            <span slot="title" style="margin-left: 20px;">当前用户：{{username}}</span>
         </el-menu-item>
         <el-menu-item index="1">
            <i class="el-icon-edit"></i>
@@ -47,6 +49,15 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 export default class AsideBar extends Vue {
     constrolSideBar() {
         this.$data.isCollapse = !this.$data.isCollapse
+        setTimeout(() => {}, 0) 
+    }
+
+    get username() {
+        return this.$store.state.UserMsg.username
+    }
+
+    created() {
+        
     }
 }
 </script>
@@ -57,6 +68,10 @@ export default class AsideBar extends Vue {
     height: 100%;
     max-width: 20%;
     overflow: hidden;
+    &:not(.el-menu--collapse) {
+        width: 20%;
+        min-height: 400px;        
+    }
     .iconfont {
         font-size: 30px;
         color: #409EFF;
