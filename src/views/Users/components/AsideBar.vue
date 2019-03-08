@@ -56,9 +56,19 @@ export default class AsideBar extends Vue {
         return this.$store.state.UserMsg.username
     }
 
-    async created() {
+    async check() {
         let data = await this.$store.dispatch('check')
-        if(data.status === -1) this.$router.push('/login')
+        if(data.status === -1) {
+            this.$message({
+                message: '请先登录',
+                type: 'error'
+            });   
+            this.$router.push('/')
+        }
+    }
+
+    created() {
+        this.check()
     }
 }
 </script>
