@@ -56,8 +56,9 @@ export default class AsideBar extends Vue {
         return this.$store.state.UserMsg.username
     }
 
-    created() {
-        
+    async created() {
+        let data = await this.$store.dispatch('check')
+        if(data.status === -1) this.$router.push('/login')
     }
 }
 </script>

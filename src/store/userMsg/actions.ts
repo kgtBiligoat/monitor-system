@@ -24,6 +24,15 @@ const actions = {
         })
         context.commit('setUserInfo', resPayload.data)
         return resPayload.data
+    },
+
+    async check(context: any) {
+        let resPayload = await request({
+            method: 'get',
+            url: 'check'
+        })
+        context.commit('setUserInfo', resPayload.data)
+        return resPayload.data   
     }
 }
 
