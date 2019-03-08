@@ -117,10 +117,30 @@ export default class SignUp extends Vue {
         let isEmpty =  await this.isEmpty('elForm') as any
         if(!isEmpty) {
             console.log('提交')
-            this.$store.dispatch('signUp', this.$data.form)
+            let data = await this.$store.dispatch('signUp', this.$data.form)
+            if(data.status === 0) {
+                this.$message({
+                    type: 'warning',
+                    message: data.msg
+                })                
+            } else if(data.status === -1) {
+                this.$message({
+                    type: 'error',
+                    message: data.msg
+                })
+            } else {
+                this.$message({
+                    message: data.msg,
+                    type: 'success'
+                });
+                this.closeDialog()
+                this.$router.push('/users')
+            }
         } else {
-            console.log('校验')
-            //TODO 
+            this.$message({
+                type: 'error',
+                message: '请按要求填写'
+            })           
         }
     }
 

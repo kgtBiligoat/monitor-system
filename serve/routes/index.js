@@ -10,7 +10,7 @@ router.post('/signUp', async (ctx, next) => {
     if (doc) {
       ctx.body = {
         msg: '用户名已存在',
-        status: 1,
+        status: 0,
         data: {}
       }
     } else {
