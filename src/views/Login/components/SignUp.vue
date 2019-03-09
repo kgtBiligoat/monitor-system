@@ -10,10 +10,10 @@
             <el-form-item label="check:" prop="checkPassword" required>
                 <el-input v-model="form.checkPassword" placeholder="please check your password" show-password></el-input>
             </el-form-item>
-            <el-form-item label="email:">
+            <el-form-item label="email:" prop="email" required>
                 <el-input v-model="form.email" placeholder="please write your email"></el-input>
             </el-form-item>
-            <el-form-item label="phone:">
+            <el-form-item label="phone:" prop="phone" required>
                 <el-input v-model="form.phone" placeholder="please write your phone"></el-input>
             </el-form-item>
             <el-form-item label="sex:">
@@ -61,6 +61,28 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
                 callback()
             }
         }
+        var validatePhone = (rule: any, value: string, callback: any) => {
+            if (!value) {
+                return callback(new Error('password is not allowed be empty'))
+            } else if (value.length !== 11) {
+                return callback(new Error('The phone number must be 11!'))
+            } else if (/\b/.test(value)) {
+                return callback(new Error('The phone can not have alphria'))
+            } else {
+                callback()
+            }
+        }
+        var validateEmail = (rule: any, value: string, callback: any) => {
+            var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+            if (!value) {
+                return callback(new Error('password is not allowed be empty'))
+            } else if (!reg.test(value)) {
+                return callback(new Error('The email is not exist'))
+            } else {
+                callback()
+            }
+        }
+
         return {
             isShow: Boolean,
             form: {
@@ -80,6 +102,12 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
                 ],
                 checkPassword: [
                     { validator: validateCheck, trigger: 'blur' }
+                ],
+                email: [
+                    { validator: validateEmail, trigger: 'blur' }
+                ],
+                phone: [
+                    { validator: validatePhone, trigger: 'blur' }
                 ]
             }     
         };

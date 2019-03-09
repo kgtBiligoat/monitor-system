@@ -14,7 +14,7 @@
         >
         <el-menu-item index="0" style="margin-bottom: 100px; display: flex; justify-content: center; align-items: center;">
             <i class="el-icon-menu iconfont" @click="constrolSideBar"></i>
-            <span slot="title" style="margin-left: 20px;">当前用户：{{username}}</span>
+            <el-tag type="sucess" slot="title" style="margin-left: 20px;">当前用户：{{username}}</el-tag>
         </el-menu-item>
         <el-menu-item index="1">
            <i class="el-icon-edit"></i>
