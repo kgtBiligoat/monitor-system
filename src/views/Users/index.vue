@@ -1,6 +1,7 @@
 <template>
     <div class="users">
-        <aside-bar></aside-bar>
+        <head-bar :isCollapse="isCollapse"></head-bar>
+        <aside-bar :isCollapse.sync="isCollapse"></aside-bar>
     </div>
 </template>
 
@@ -9,11 +10,17 @@ import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 
 import asideBar from './components/AsideBar.vue'
+import headBar from './components/Header.vue'
 
 @Component({
-    components: { asideBar }
+    components: { asideBar, headBar },
+    data() {
+        return {
+            isCollapse: false
+        }
+    }
 })
-export default class App extends Vue {
+export default class Users extends Vue {
 
 }
 </script>

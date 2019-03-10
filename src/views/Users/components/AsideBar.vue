@@ -1,5 +1,4 @@
 <template>
-
     <el-menu
         default-active="1"
         class="el-menu-vertical-demo"  
@@ -39,17 +38,15 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 
-@Component({
-    data() {
-        return {
-            isCollapse: true
-        }
-    }
-})
+@Component
 export default class AsideBar extends Vue {
+    @Prop({
+        type: Boolean
+    })
+    isCollapse!: boolean
+
     constrolSideBar() {
-        this.$data.isCollapse = !this.$data.isCollapse
-        setTimeout(() => {}, 0) 
+        this.$emit('update:isCollapse', !this.isCollapse)
     }
 
     get username() {
