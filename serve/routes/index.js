@@ -83,6 +83,15 @@ router.post('/signIn', async (ctx, next) => {
   }
 })
 
+router.get('/logout', async (ctx, next) => {
+  ctx.cookies.set('userId',{signed:false,maxAge:0})
+  ctx.body = {
+    msg: '登出',
+    status: 1,
+    data: {}
+  }
+})
+
 router.get('/check', async (ctx, next) => {
   let id = ctx.cookies.get('userId')
   let doc = await userSchema.findOne({ '_id': id })

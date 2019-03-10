@@ -26,6 +26,17 @@ const actions = {
         return resPayload.data
     },
 
+    async logout(context: any) {
+        let resPayload = await request({
+            method: 'get',
+            url: '/logout'
+        })
+        if(resPayload.status === 1) {
+            context.commit('logout')
+        }
+        return resPayload
+    },
+
     async check(context: any) {
         let resPayload = await request({
             method: 'get',

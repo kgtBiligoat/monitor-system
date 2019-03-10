@@ -5,6 +5,9 @@ const mutations = {
                 state[item] = payload.data[item]
             })            
         }
+    },
+    logout: (state: any) => {
+        state = {}   
     }
 }
 

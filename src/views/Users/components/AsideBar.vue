@@ -28,7 +28,7 @@
             <i class="el-icon-tickets"></i>
             <span slot="title">数据展示</span>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="4" @click="logout">
             <i class="el-icon-back"></i>
             <span slot="title">登出</span>
         </el-menu-item>
@@ -63,6 +63,14 @@ export default class AsideBar extends Vue {
                 message: '请先登录',
                 type: 'error'
             });   
+            this.$router.push('/')
+        }
+    }
+
+    async logout() {
+        let data = await this.$store.dispatch('logout')
+        console.log(data)
+        if(data.data.status === 1) {
             this.$router.push('/')
         }
     }
