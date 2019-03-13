@@ -16,7 +16,7 @@
         </div>
         <el-row>
             <el-button plain type="primary" style="margin-right: 50px;" @click="signIn">sign in</el-button>
-            <el-button plain type="primary" @click="signUp">sign up</el-button>
+            <el-button plain type="primary" @click="signUp" >sign up</el-button>
         </el-row>
 
         <sign-up v-show="isSignUpShow" :isSignUpShow.sync="isSignUpShow"></sign-up>
@@ -64,6 +64,10 @@ export default class Login extends Vue {
                 type: 'error'
             });            
         }
+    }
+
+    change(e: any) {
+        console.log(e)
     }
 
 }

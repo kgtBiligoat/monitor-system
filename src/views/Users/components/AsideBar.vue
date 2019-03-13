@@ -17,7 +17,7 @@
         </el-menu-item>
         <el-menu-item index="1">
            <i class="el-icon-edit"></i>
-           <span slot="title">个人信息编辑</span>
+           <span slot="title">信息管理</span>
         </el-menu-item>
         <el-menu-item index="2">
             <i class="el-icon-document"></i>
