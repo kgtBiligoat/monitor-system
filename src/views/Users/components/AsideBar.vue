@@ -15,7 +15,7 @@
             <i class="el-icon-menu iconfont" @click="constrolSideBar"></i>
             <el-tag type="sucess" slot="title" style="margin-left: 20px;">当前用户：{{username}}</el-tag>
         </el-menu-item>
-        <el-menu-item index="1">
+        <el-menu-item index="1" @click="$router.push('/users/qwe')">
            <i class="el-icon-edit"></i>
            <span slot="title">信息管理</span>
         </el-menu-item>
@@ -80,6 +80,7 @@ export default class AsideBar extends Vue {
 
 <style lang='less' scoped>
 .el-menu-vertical-demo {
+    box-sizing: border-box;
     padding-top: 10%;
     height: 100%;
     max-width: 20%;

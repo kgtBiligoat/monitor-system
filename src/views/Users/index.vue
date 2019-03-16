@@ -1,7 +1,12 @@
 <template>
     <div class="users">
-        <head-bar :isCollapse="isCollapse"></head-bar>
-        <aside-bar :isCollapse.sync="isCollapse"></aside-bar>
+        <div class="row">
+            <aside-bar :isCollapse.sync="isCollapse"></aside-bar>
+            <div class="col">
+                <head-bar :isCollapse="isCollapse" :name="name"></head-bar>
+                <main-bar :isCollapse="isCollapse" ></main-bar>                
+            </div>             
+        </div>
     </div>
 </template>
 
@@ -11,12 +16,14 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 
 import asideBar from './components/AsideBar.vue'
 import headBar from './components/Header.vue'
+import mainBar from './components/MainBar.vue'
 
 @Component({
-    components: { asideBar, headBar },
+    components: { asideBar, headBar, mainBar },
     data() {
         return {
-            isCollapse: false
+            isCollapse: false,
+            name: ['qwe', 'qwe']
         }
     }
 })
@@ -29,5 +36,16 @@ export default class Users extends Vue {
 .users {
     height: 100%;
     width: 100%;
+    .row {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;;
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }
 </style>

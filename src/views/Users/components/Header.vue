@@ -1,9 +1,6 @@
 <template>
-        <el-menu  class="el-menu-demo" mode="horizontal" :class="[isCollapse?'el-menu-demo-left':'el-menu-demo-right']">
-            <el-menu-item index="1">处理中心</el-menu-item>
-            <el-menu-item index="2">处理中心</el-menu-item>
-            <el-menu-item index="3" >消息中心</el-menu-item>
-            <el-menu-item index="4">个人</el-menu-item>
+        <el-menu default-active="0" class="el-menu-demo" mode="horizontal" :class="[isCollapse?'el-menu-demo-left':'el-menu-demo-right']">
+            <el-menu-item v-for="(item, index) in name" :index="String(index)" :key="index">{{index}}</el-menu-item>
         </el-menu>        
 
 </template>
@@ -17,6 +14,9 @@ export default class Header extends Vue {
         type: Boolean
     })
     isCollapse!: boolean
+    @Prop()
+    name!: any
+
 }
 </script>
 
@@ -24,15 +24,7 @@ export default class Header extends Vue {
 .el-menu-demo {
     display: flex;
     justify-content: center;
-    position: absolute;
-    transition: all .3s ease-in-out;
-    &-left {
-        left: 64px;
-        width: 95%;;
-    }
-    &-right {
-        left: 20%;
-        width: 80%;
-    }   
+    transition: all .3s;
+    width: 100%;
 }
 </style>

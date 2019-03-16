@@ -15,7 +15,14 @@ export default new Router({
     },
     {
       path: '/users',
-      component: Users      
+      component: Users,
+      children: [
+        {
+          path: 'qwe',
+          name: 'qwe',
+          component: Users
+        }
+      ]  
     }
   ],
 });
