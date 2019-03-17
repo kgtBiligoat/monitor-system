@@ -21,8 +21,8 @@ router.get('/bar', async (ctx, next) => {
       message: '选择数据接入',
       data: {
         name: [
-          '接入地址',
-          '接入数据库'
+          { cnName: '接入地址', enName: 'getAddress' },
+          { cnName: '接入数据库', enName: 'getDataBase'}
         ]
       }
     } 
@@ -32,9 +32,9 @@ router.get('/bar', async (ctx, next) => {
       message: '选择数据展示', 
       data: {
         name: [
-          '折线图',
-          '饼图',
-          '柱状图'
+          { cnName: '折线图', enName: 'lineChart'},
+          { cnName: '饼图', enName: 'pieChart'},
+          { cnName: '柱状图', enName: 'columnChart'}
         ]
       }
     }
