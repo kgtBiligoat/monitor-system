@@ -1,6 +1,6 @@
 <template>
-    <div class="mainBar" :class="[isCollapse?'MainBar-left':'MainBar-right']">
-        <!-- <router-view></router-view> -->
+    <div class="mainBar">
+        <router-view></router-view>
         11112121
     </div>
 </template>
@@ -20,14 +20,8 @@ export default class MainBar extends Vue {
 <style lang='less' scoped>
 .MainBar {
     display: flex;
-    justify-content: center;
-    &-left {
-        left: 64px;
-        width: 95%;;
-    }
-    &-right {
-        left: 20%;
-        width: 80%;
-    }  
+    justify-content: center;  
+    height: 100%;
+    width: 100%;  
 }
 </style>

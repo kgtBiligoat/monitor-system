@@ -15,15 +15,15 @@
             <i class="el-icon-menu iconfont" @click="constrolSideBar"></i>
             <el-tag type="sucess" slot="title" style="margin-left: 20px;">当前用户：{{username}}</el-tag>
         </el-menu-item>
-        <el-menu-item index="1" @click="$router.push('/users/qwe')">
+        <el-menu-item index="1" @click="messageMange('messageMange')">
            <i class="el-icon-edit"></i>
            <span slot="title">信息管理</span>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="2" @click="messageMange('getData')">
             <i class="el-icon-document"></i>
             <span slot="title">数据接入</span>
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="3" @click="messageMange('showData')">
             <i class="el-icon-tickets"></i>
             <span slot="title">数据展示</span>
         </el-menu-item>
@@ -36,6 +36,7 @@
 
 <script lang='ts'>
 import Vue from 'vue';
+import axios from 'axios'
 import { Component, Prop, Watch } from 'vue-property-decorator';
 
 @Component
@@ -72,6 +73,22 @@ export default class AsideBar extends Vue {
         }
     }
 
+    async messageMange(name: String) {
+        let data = await axios.get('/api/users/bar' ,{
+            params: {
+                name : name
+            }
+        })
+        if (data.data.status === 1) {
+            this.$emit('changeHeaderName', data.data.data.name)
+        } else {
+            this.$message({
+                type: 'error',
+                message: '服务器端错误'
+            })
+        }
+        
+    }
     created() {
         this.check()
     }

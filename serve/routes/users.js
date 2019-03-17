@@ -1,9 +1,50 @@
 const router = require('koa-router')()
 
-router.prefix('/users')
+router.prefix('/api/users')
 
-router.post('/', function (ctx, next) {
-  ctx.body = 'this is a users response!'
+router.get('/bar', async (ctx, next) => {
+  let name = await ctx.request.query.name
+  if (name === 'messageMange') {
+    ctx.body = {
+      status: 1,
+      message: '选择信息管理',
+      data : {
+        name: [
+          '展示',
+          '修改'
+        ]
+      }
+    }
+  } else if (name === 'getData') {
+    ctx.body = {
+      status: 1,
+      message: '选择数据接入',
+      data: {
+        name: [
+          '接入地址',
+          '接入数据库'
+        ]
+      }
+    } 
+  } else if (name === "showData") {
+    ctx.body = {
+      status: 1,
+      message: '选择数据展示', 
+      data: {
+        name: [
+          '折线图',
+          '饼图',
+          '柱状图'
+        ]
+      }
+    }
+  } else {
+    ctx.body = {
+      status: -1,
+      message: '错误',
+      data: {}
+    }
+  }
 })
 
 module.exports = router

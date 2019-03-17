@@ -1,8 +1,7 @@
 <template>
-        <el-menu default-active="0" class="el-menu-demo" mode="horizontal" :class="[isCollapse?'el-menu-demo-left':'el-menu-demo-right']">
-            <el-menu-item v-for="(item, index) in name" :index="String(index)" :key="index">{{index}}</el-menu-item>
+        <el-menu default-active="0" class="el-menu-demo" mode="horizontal" >
+            <el-menu-item v-for="(item, index) in name" :index="String(index)" :key="index">{{item}}</el-menu-item>
         </el-menu>        
-
 </template>
 
 <script lang='ts'>

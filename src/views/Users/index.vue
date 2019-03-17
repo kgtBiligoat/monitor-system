@@ -1,7 +1,7 @@
 <template>
     <div class="users">
         <div class="row">
-            <aside-bar :isCollapse.sync="isCollapse"></aside-bar>
+            <aside-bar :isCollapse.sync="isCollapse" @changeHeaderName="changeHeaderName"></aside-bar>
             <div class="col">
                 <head-bar :isCollapse="isCollapse" :name="name"></head-bar>
                 <main-bar :isCollapse="isCollapse" ></main-bar>                
@@ -23,12 +23,14 @@ import mainBar from './components/MainBar.vue'
     data() {
         return {
             isCollapse: false,
-            name: ['qwe', 'qwe']
+            name: ['展示', '修改']
         }
     }
 })
 export default class Users extends Vue {
-
+    changeHeaderName(data: any) {
+        this.$data.name = data
+    }
 }
 </script>
 
@@ -43,6 +45,8 @@ export default class Users extends Vue {
         width: 100%;
         height: 100%;;
         .col {
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
         }
