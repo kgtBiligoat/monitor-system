@@ -10,8 +10,8 @@ router.get('/bar', async (ctx, next) => {
       message: '选择信息管理',
       data : {
         name: [
-          '展示',
-          '修改'
+          { cnName: '展示', enName: 'Show' },
+          { cnName: '修改', enName: 'Edit'}
         ]
       }
     }

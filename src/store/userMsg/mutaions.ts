@@ -9,6 +9,7 @@ const mutations = {
     logout: (state: any) => {
         state = {}   
     }
+
 }
 
 export default mutations

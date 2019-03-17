@@ -81,6 +81,7 @@ export default class AsideBar extends Vue {
         })
         if (data.data.status === 1) {
             this.$emit('changeHeaderName', data.data.data.name)
+            this.$router.push(`/users/${name}`)
         } else {
             this.$message({
                 type: 'error',
@@ -91,6 +92,7 @@ export default class AsideBar extends Vue {
     }
     created() {
         this.check()
+        this.messageMange('messageMange')
     }
 }
 </script>
@@ -100,10 +102,10 @@ export default class AsideBar extends Vue {
     box-sizing: border-box;
     padding-top: 10%;
     height: 100%;
-    max-width: 20%;
+    max-width: 30%;
     overflow: hidden;
     &:not(.el-menu--collapse) {
-        width: 20%;
+        width: 30%;
         min-height: 400px;        
     }
     .iconfont {

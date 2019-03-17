@@ -1,13 +1,13 @@
 <template>
     <div class="mainBar">
         <router-view></router-view>
-        11112121
     </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
+
 @Component
 export default class MainBar extends Vue {
     @Prop({
@@ -18,10 +18,8 @@ export default class MainBar extends Vue {
 </script>
 
 <style lang='less' scoped>
-.MainBar {
-    display: flex;
-    justify-content: center;  
-    height: 100%;
+.mainBar { 
+    height: 90%;
     width: 100%;  
 }
 </style>

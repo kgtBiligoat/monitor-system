@@ -1,12 +1,19 @@
 <template>
         <el-menu default-active="0" class="el-menu-demo" mode="horizontal" >
-            <el-menu-item v-for="(item, index) in name" :index="String(index)" :key="index">{{item}}</el-menu-item>
+            <el-menu-item
+                v-for="(item, index) in name" 
+                :index="String(index)" 
+                :key="index"
+                @click="change(item)"
+            >{{item.cnName}}</el-menu-item>
         </el-menu>        
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
+import eventBus from './message/messageBus'
+
 @Component
 export default class Header extends Vue {
     @Prop({
@@ -15,6 +22,11 @@ export default class Header extends Vue {
     isCollapse!: boolean
     @Prop()
     name!: any
+
+    change(name: String) {
+        console.log(name)
+        eventBus.$emit('change', name)
+    }
 
 }
 </script>
