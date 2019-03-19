@@ -1,8 +1,8 @@
 <template>
     <div class="user">
-        <component :is="name"></component>        
+        <Edit v-if="name !== 'Show'"></Edit>
+        <Show v-else></Show>        
     </div>
-
 </template>
 
 <script lang='ts'>
@@ -19,11 +19,18 @@ import Show from './Show.vue'
     components: { Edit, Show },
     data() {
         return {
-            name: 'Show'
+            name: 'Show',
+            allName: ['Show', 'Edit']
         }
     }
 })
 export default class Message extends Vue {
+
+    @Watch('name', { immediate: true }) 
+    activeIndex() {
+        eventBus.$emit('activeIndexChange', this.$data.allName.indexOf(this.$data.name))
+    }
+
     mounted() {
         eventBus.$on('change', (val: any) => {
             this.$data.name = val.enName

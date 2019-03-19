@@ -5,6 +5,8 @@ export interface UserMsg {
     phone: Number
     email: String
     sex: String
+    identity: String
+    address: String
 }
 
 export let state: UserMsg = {
@@ -13,5 +15,7 @@ export let state: UserMsg = {
     password: '',
     phone: -1,
     email: '',
-    sex: ''
+    sex: '',
+    identity: '',
+    address: ''
 } 

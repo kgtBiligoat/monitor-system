@@ -1,5 +1,5 @@
 <template>
-        <el-menu default-active="0" class="el-menu-demo" mode="horizontal" >
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" >
             <el-menu-item
                 v-for="(item, index) in name" 
                 :index="String(index)" 
@@ -14,7 +14,13 @@ import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import eventBus from './message/messageBus'
 
-@Component
+@Component({
+    data() {
+        return {
+            activeIndex: '0'
+        }
+    }
+})
 export default class Header extends Vue {
     @Prop({
         type: Boolean
@@ -28,6 +34,11 @@ export default class Header extends Vue {
         eventBus.$emit('change', name)
     }
 
+    mounted() {
+        eventBus.$on('activeIndexChange', (val: any) => {
+            this.$data.activeIndex = val.toString()
+        })
+    }
 }
 </script>
 
