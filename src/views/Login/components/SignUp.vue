@@ -66,7 +66,7 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
                 return callback(new Error('password is not allowed be empty'))
             } else if (value.length !== 11) {
                 return callback(new Error('The phone number must be 11!'))
-            } else if (/\b/.test(value)) {
+            } else if (/[a-zA-Z]/.test(value)) {
                 return callback(new Error('The phone can not have alphria'))
             } else {
                 callback()

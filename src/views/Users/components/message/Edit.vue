@@ -3,13 +3,20 @@
         <div slot="header" class="clearfix">
             <span>个人信息（展示态）</span>
         </div>
-        <el-form label-position="right" label-width="80px" :model="userMessage">
+        <el-form label-position="right" label-width="80px" :model="userMessage" :rules="rules" ref="elForm">
             <el-form-item 
                 v-for="(item, index) in userMessage" 
+                :prop="index"
                 :key="index"
                 :label="toCn(index)"
             >
-                <el-input v-show="toCn(index)" style="width: 80%;" v-model="userMessage[index]"></el-input>
+                <div>
+                    <el-input v-show="toCn(index)" style="width: 80%;" v-model="userMessage[index]" v-if="index !== 'sex'"></el-input>
+                    <div v-else>
+                        <el-radio v-model="userMessage[index]" label="man">男</el-radio>
+                        <el-radio v-model="userMessage[index]" label="women">女</el-radio>                    
+                    </div>                    
+                </div>
             </el-form-item>  
         </el-form>
         <el-button style="margin-left: 40%;" @click="submit">提交</el-button>
@@ -23,8 +30,60 @@ import eventBus from './messageBus'
 import { Component, Prop, Watch } from 'vue-property-decorator';
 @Component({
     data() {
+            var validateUser = (rule: any, value: string, callback: any) => {
+            if (!value.trim()) {
+                return callback(new Error('username is not allowed be empty'))
+            } else if (/\d|\s/.test(value.trim())) {
+                return callback(new Error('username should be alphabet'))
+            }
+            else {
+                callback()
+            }
+        }
+        var validatePass = (rule: any, value: string, callback: any) => {
+            if (!value) {
+                return callback(new Error('password is not allowed be empty'))
+            } else {
+                callback()
+            }
+        }
+        var validatePhone = (rule: any, value: string, callback: any) => {
+            if (!value) {
+                return callback(new Error('password is not allowed be empty'))
+            } else if (value.length !== 11) {
+                return callback(new Error('The phone number must be 11!'))
+            } else if (/[a-zA-Z]/.test(value)) {
+                return callback(new Error('The phone can not have alphria'))
+            } else {
+                callback()
+            }
+        }
+        var validateEmail = (rule: any, value: string, callback: any) => {
+            var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+            if (!value) {
+                return callback(new Error('password is not allowed be empty'))
+            } else if (!reg.test(value)) {
+                return callback(new Error('The email is not exist'))
+            } else {
+                callback()
+            }
+        }
         return {
-            userMessage: {}
+            userMessage: {},
+            rules: {
+                username: [
+                    { validator: validateUser, trigger: 'blur' }
+                ],
+                password: [
+                    { validator: validatePass, trigger: 'blur' }
+                ],
+                email: [
+                    { validator: validateEmail, trigger: 'blur' }
+                ],
+                phone: [
+                    { validator: validatePhone, trigger: 'blur' }
+                ]
+            }  
         }
     }
 })
@@ -61,7 +120,31 @@ export default class EditMessage extends Vue {
         return temp.toFixed(0)
     }
 
-    submit() {}
+    async submit() {
+        let isEmpty =  await this.isEmpty('elForm') as any
+        console.log(isEmpty)
+        if(!isEmpty) {
+            let data = await this.$store.dispatch('changeUserInfo', this.$data.userMessage)
+        } else {
+            this.$message({
+                type: 'error',
+                message: '请按要求填写'
+            })           
+        }
+        
+    }
+
+    isEmpty(formName: string) {
+        return new Promise((resolve: any) => {
+            (this.$refs[formName] as any).validate((valid: any) => {
+                if (!valid) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            });   
+        })
+    }
 
     mounted() {
         this.$data.userMessage = { ...this.$store.state.UserMsg }

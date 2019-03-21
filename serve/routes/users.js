@@ -1,4 +1,5 @@
 const router = require('koa-router')()
+const userSchema = require('../schema/user.js')
 
 router.prefix('/api/users')
 
@@ -45,6 +46,15 @@ router.get('/bar', async (ctx, next) => {
       data: {}
     }
   }
+})
+
+router.post('/changeUserInfo', async (ctx) => {
+  let userInfo = ctx.request.body
+  let id = ctx.cookies.get('userId')
+  let doc = await userSchema.update({"_id": id}, userInfo)
+  if(doc) {
+    ctx.body = 1
+  } else ctx.body = 3
 })
 
 module.exports = router

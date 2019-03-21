@@ -37,10 +37,21 @@ const actions = {
         return resPayload
     },
 
+    async changeUserInfo(context: any, payload: any) {
+        let param = { ...payload }
+        let resPayload = await request({
+            method: 'post',
+            url: '/users/changeUserInfo',
+            data: param
+        })
+        context.commit('setUserInfo', resPayload.data)
+        return resPayload.data
+    },
+
     async check(context: any) {
         let resPayload = await request({
             method: 'get',
-            url: 'check'
+            url: '/check'
         })
         context.commit('setUserInfo', resPayload.data)
         return resPayload.data   
