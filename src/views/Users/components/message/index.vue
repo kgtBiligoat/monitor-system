@@ -8,7 +8,7 @@
 <script lang='ts'>
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import eventBus from './messageBus'
+import eventBus from '@/views/Users/eventBus'
 
 import Edit from './Edit.vue'
 import Show from './Show.vue'

@@ -26,7 +26,7 @@
 
 <script lang='ts'>
 import Vue from 'vue';
-import eventBus from './messageBus'
+import eventBus from '@/views/Users/eventBus'
 import { Component, Prop, Watch } from 'vue-property-decorator';
 @Component({
     data() {
