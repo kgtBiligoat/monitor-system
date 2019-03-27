@@ -5,7 +5,8 @@
         </div>
         <el-form label-position="right" label-width="80px" :model="userMessage" :rules="rules" ref="elForm">
             <el-form-item 
-                v-for="(item, index) in userMessage" 
+                v-for="(item, index) in userMessage"
+                v-show="index !== 'id' && index !== '__v'" 
                 :prop="index"
                 :key="index"
                 :label="toCn(index)"
@@ -125,6 +126,13 @@ export default class EditMessage extends Vue {
         console.log(isEmpty)
         if(!isEmpty) {
             let data = await this.$store.dispatch('changeUserInfo', this.$data.userMessage)
+            if (data.status === 1) {
+                this.$message({
+                    type: 'success',
+                    message: '成功'
+                })
+                eventBus.$emit('activeIndexChange', 'Show')
+            }
         } else {
             this.$message({
                 type: 'error',

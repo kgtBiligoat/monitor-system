@@ -3,7 +3,7 @@
         <div slot="header" class="clearfix">
             <span>个人信息（展示态）</span>
         </div>
-        <div v-for="(item, index) in userMessage" :key="index" class="text item" v-show="index !== '_id' && index !== '__v'">
+        <div v-for="(item, index) in userMessage" :key="index" class="text item" v-show="index !== '_id' && index !== '__v' && index !== 'id'">
             {{toCn(index)}}:&nbsp;&nbsp;{{getSex(item, index)}}
         </div>
         <el-progress style="width: 100%;" :percentage="Number(percent)"></el-progress>
@@ -38,8 +38,6 @@ export default class ShowMessage extends Vue {
                 return '性别'
             case 'address':
                 return '住址'
-            default: 
-                return ''
         }
     }
 

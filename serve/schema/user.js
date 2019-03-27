@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
     "email": String,
     "phone": String,
     "identity": String,
-    "address": String
+    "address": String,
+    "isSetPort": Boolean
 });
 
 module.exports = mongoose.model("users",userSchema);

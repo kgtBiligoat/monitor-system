@@ -21,7 +21,7 @@ export default class MainBar extends Vue {
 
 <style lang='less' scoped>
 .mainBar { 
-    height: 90%;
+    min-height: 90%;
     width: 100%;  
 }
 </style>

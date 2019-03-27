@@ -1,7 +1,10 @@
 <template>
     <div class="user">
-        <get-address v-if="name === 'getAddress'"></get-address>
-        <get-data-base v-else></get-data-base>
+        <keep-alive>
+            <get-address v-if="name === 'getAddress'"></get-address>
+            <get-data-base v-else></get-data-base>            
+        </keep-alive>
+
     </div>
 </template>
 
@@ -39,7 +42,7 @@ export default class GetData extends Vue {
 <style lang='less' scoped>
 .user {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

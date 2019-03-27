@@ -1,5 +1,7 @@
 const router = require('koa-router')()
 const userSchema = require('../schema/user.js')
+const dataSchema = require('../schema/data.js')
+const portSchema = require('../schema/port.js')
 
 router.prefix('/api')
 
