@@ -1,5 +1,5 @@
 <template>
-    <div class="mainBar">
+    <div class="mainBar" :class="{ 'trigger': isCollapse }">
         <keep-alive>
             <router-view></router-view>             
         </keep-alive>
@@ -21,7 +21,15 @@ export default class MainBar extends Vue {
 
 <style lang='less' scoped>
 .mainBar { 
+    position: relative;
+    left: 30%;
     min-height: 90%;
+    width: 70%;  
+    transition: all .3s;
+}
+.trigger {
+    transition: all .3s;
+    left: 0%;
     width: 100%;  
 }
 </style>

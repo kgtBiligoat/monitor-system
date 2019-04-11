@@ -1,5 +1,5 @@
 <template>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" >
+        <el-menu :default-active="activeIndex" class="el-menu-demo" :class="{ 'trigger': isCollapse }" mode="horizontal" >
             <el-menu-item
                 v-for="(item, index) in name" 
                 :index="String(index)" 
@@ -30,7 +30,6 @@ export default class Header extends Vue {
     name!: any
 
     change(name: String) {
-        console.log(name)
         eventBus.$emit('change', name)
     }
 
@@ -44,9 +43,16 @@ export default class Header extends Vue {
 
 <style lang='less' scoped>
 .el-menu-demo {
+    position: relative;
+    left: 30%;
     display: flex;
     justify-content: center;
     transition: all .3s;
-    width: 100%;
+    width: 70%;
+}
+.trigger {
+    transition: all .3s;
+    left: 0%;
+    width: 100%;  
 }
 </style>

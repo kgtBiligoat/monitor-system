@@ -35,9 +35,7 @@ router.get('/bar', async (ctx, next) => {
       message: '选择数据展示', 
       data: {
         name: [
-          { cnName: '折线图', enName: 'lineChart'},
-          { cnName: '饼图', enName: 'pieChart'},
-          { cnName: '柱状图', enName: 'columnChart'}
+          { cnName: '数据编辑', enName: 'EditData' },
         ]
       }
     }

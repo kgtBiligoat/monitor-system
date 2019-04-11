@@ -38,6 +38,7 @@ export default class ShowMessage extends Vue {
                 return '性别'
             case 'address':
                 return '住址'
+            default: return ''
         }
     }
 

@@ -1,25 +1,23 @@
 <template>
     <div class="user">
-        <column-chart v-if="name === 'columnChart'"></column-chart>
-        <line-chart v-else-if="name === 'lineChart'"></line-chart>
-        <pie-chart v-else></pie-chart>
+        <edit v-for="item in number" :key="item"></edit>
+        <i class="el-icon-circle-plus class" >添加新的需要展示的数据</i>
     </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
+import Edit from './Edit.vue'
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import columnChart from './ColumnChart.vue'
-import lineChart from './LineChart.vue'
-import pieChart from './PieChart.vue'
 import eventBus from '@/views/Users/eventBus'
 
 @Component({
-    components: { columnChart, lineChart, pieChart },
+    components: { Edit },
     data() {
         return {
-            name: 'lineChart',
-            allName: ['lineChart', 'pieChart', 'columnChart']
+            name: 'EditData',
+            allName: ['EditData'],
+            number: [ 0, 1, 2 ]
         }
     }
 })
@@ -42,8 +40,16 @@ export default class ShowData extends Vue {
     width: 100%;
     min-height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
+    .class {
+        color: #409eff;
+        margin-bottom: 40px;
+        & {
+            cursor: pointer;
+        }
+    }
 }
 </style>

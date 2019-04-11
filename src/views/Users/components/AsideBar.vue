@@ -99,11 +99,20 @@ export default class AsideBar extends Vue {
 
 <style lang='less' scoped>
 .el-menu-vertical-demo {
+    z-index: 200;
+    position: fixed;
+    top: 0px;
     box-sizing: border-box;
     padding-top: 10%;
     height: 100%;
     max-width: 30%;
     overflow: hidden;
+    &:after {
+        content:"";
+        display:block;
+        clear:both;
+        height:0;
+    }
     &:not(.el-menu--collapse) {
         width: 30%;
         min-height: 400px;        
