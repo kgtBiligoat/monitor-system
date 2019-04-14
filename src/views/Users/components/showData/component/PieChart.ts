@@ -6,6 +6,7 @@ import Vue from 'vue'
     extends: Pie, // this is important to add the functionality to your component
 })
 export default class PieChart extends Vue {
+  [x: string]: any;
   @Prop()
   labels!: Array<String>
   @Prop()

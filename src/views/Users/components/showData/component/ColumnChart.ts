@@ -6,6 +6,7 @@ import Vue from 'vue'
     extends: Bar, // this is important to add the functionality to your component
 })
 export default class ColumnChart extends Vue {
+  [x: string]: any;
   @Prop()
   labels!: Array<String>
   @Prop()
