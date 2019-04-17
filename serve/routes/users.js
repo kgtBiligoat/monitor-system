@@ -122,4 +122,10 @@ router.get('/setPortData', async (ctx, next) => {
     }
 })
 
+router.get('/getdata', async (ctx) => {
+  let data = ctx.request.query
+
+  ctx.body = 1
+})
+
 module.exports = router
