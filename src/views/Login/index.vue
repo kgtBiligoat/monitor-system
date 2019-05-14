@@ -50,9 +50,9 @@ export default class Login extends Vue {
             ...this.$data
         }
         let data = await this.$store.dispatch('signIn', param)
-        if(data.status === 1) {                
+        if(data[0].status === 1) {                
             this.$message({
-                message: data.msg,
+                message: '登陆成功',
                 type: 'success'
             });
             setTimeout(() => {
@@ -60,7 +60,7 @@ export default class Login extends Vue {
             }, 1000)
         } else {
             this.$message({
-                message: data.msg,
+                message: '登录失败',
                 type: 'error'
             });            
         }

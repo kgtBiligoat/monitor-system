@@ -12,10 +12,6 @@ export const selectOptions = [
         value: '内存'
     },
     {
-        label: '网络流量',
-        value: '网络流量'
-    },
-    {
         label: '数据库',
         value: '数据库'
     }
@@ -33,17 +29,13 @@ export const graphOptions = [
     {
         label: '折线图',
         value: 'line'
-    },
-    {
-        label: '雷达图',
-        value: 'radar'
-    },
+    }
 ]
 
 export const timeOptions = [
     {
         label: '24h',
-        valeu: '24h'
+        value: '24h'
     }, 
     {
         value: '12h',

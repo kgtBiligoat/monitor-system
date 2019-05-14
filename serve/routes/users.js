@@ -2,6 +2,7 @@ const router = require('koa-router')()
 const userSchema = require('../schema/user.js')
 const portSchema = require('../schema/port.js')
 const dataSchema = require('../schema/data.js')
+const os = require('os')
 
 router.prefix('/api/users')
 
@@ -125,7 +126,50 @@ router.get('/setPortData', async (ctx, next) => {
 router.get('/getdata', async (ctx) => {
   let data = ctx.request.query
 
-  ctx.body = 1
+  if(data.dataType === 'pie') {
+    if(data.dataName === 'CPU') {
+      let a = os.loadavg().reduce((q, w) => {
+        return q + w
+      })/3
+      ctx.body = {
+        data: [3.3-a, a],
+        labels: ['已用','剩余'],
+        bc: ['#00C642', '#cb3837']
+      }
+    }
+  }
+      
 })
+
+router.get('/get', async ctx => {
+  let data = ctx.request.query
+  if(data.type === 'CPU') {
+    console.log(1)
+    ctx.body =  os.loadavg()
+  } else if(data.type === "内存") {
+    var freememory  = os.freemem()/1024/1024/1024
+    var totalmemory  = os.totalmem()/1024/1024/1024
+    var usedmemory   = (totalmemory - freememory/1024/1024/1024)
+
+    let data = [totalmemory, freememory, usedmemory]
+    ctx.body = data
+  } else if (data.type === '数据库') {
+      var totalmemory = '2GB'
+      var freememory = '1.9GB'
+      var usedmemory = '0.1GB'
+
+      let data = [totalmemory, freememory, usedmemory]
+      ctx.body = data      
+  } else if (data.type === '硬盘') {
+      var totalmemory = '256GB'
+      var freememory = '100GB'
+      var usedmemory = '156GB'      
+    
+      let data = [totalmemory, freememory, usedmemory]
+      ctx.body = data
+  }
+  else ctx.body = 1
+})
+
 
 module.exports = router

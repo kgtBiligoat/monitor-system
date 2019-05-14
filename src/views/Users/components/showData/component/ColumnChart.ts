@@ -1,4 +1,4 @@
-import { Bar } from 'vue-chartjs';
+import { Bar, mixins } from 'vue-chartjs';
 import { Component, Prop } from 'vue-property-decorator';
 import Vue from 'vue'
  
@@ -13,6 +13,10 @@ export default class ColumnChart extends Vue {
   label!: string
   @Prop()
   data!: Array<Number>
+  @Prop({
+    default: '#f87979'
+  })
+  bc!: any
   
   mounted () {
     // Overwriting base render method with actual data.
@@ -21,7 +25,7 @@ export default class ColumnChart extends Vue {
       datasets: [
         {
           label: this.label,
-          backgroundColor: '#f87979',
+          backgroundColor: this.bc,
           data: this.data
         }
       ]

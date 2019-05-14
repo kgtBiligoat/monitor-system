@@ -67,8 +67,8 @@ export default class AsideBar extends Vue {
 
     async logout() {
         let data = await this.$store.dispatch('logout')
-        console.log(data)
-        if(data.data.status === 1) {
+        console.log(data[0])
+        if(data[0].data.status === 1) {
             this.$router.push('/')
         }
     }

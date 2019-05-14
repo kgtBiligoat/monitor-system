@@ -96,6 +96,7 @@ router.get('/logout', async (ctx, next) => {
 
 router.get('/check', async (ctx, next) => {
   let id = ctx.cookies.get('userId')
+  console.log(id)
   let doc = await userSchema.findOne({ '_id': id })
   if(doc) {
     ctx.body = {
