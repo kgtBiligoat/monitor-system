@@ -37,6 +37,7 @@ router.get('/bar', async (ctx, next) => {
       data: {
         name: [
           { cnName: '数据编辑', enName: 'EditData' },
+          { cnName: '数据监控', enName: 'shujujiankong' }
         ]
       }
     }

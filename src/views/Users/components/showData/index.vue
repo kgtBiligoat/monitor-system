@@ -1,9 +1,11 @@
 <template>
     <div class="user">
        
-            <edit v-for="item in number" :key="item" @close="deleteRow(item)"></edit>            
+            <edit v-for="item in number" :key="item" @close="deleteRow(item)" v-if="name === 'EditData'"></edit>     
+            <monitor v-else></monitor>
+
        
-        <i class="el-icon-circle-plus class" @click="addNewRow" >添加新的需要展示的数据</i>
+        <i class="el-icon-circle-plus class" @click="addNewRow"  v-show="name === 'EditData'">添加新的需要展示的数据</i>
     </div>
 </template>
 
@@ -12,9 +14,10 @@ import Vue from 'vue';
 import Edit from './Edit.vue'
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import eventBus from '@/views/Users/eventBus'
+import monitor from '@/views/Users/components/dataMonitor/index.vue'
 
 @Component({
-    components: { Edit },
+    components: { Edit, monitor },
     data() {
         return {
             name: 'EditData',

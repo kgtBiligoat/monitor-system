@@ -5,6 +5,7 @@ import Users from '@/views/Users/index.vue'
 import UsersMessage from '@/views/Users/components/message/index.vue'
 import ShowData from '@/views/Users/components/showData/index.vue'
 import GetData from '@/views/Users/components/getData/index.vue'
+import dataMonitor from '@/views/Users/components/dataMonitor/index.vue'
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
           path: 'showData',
           name: 'showData',
           component: ShowData
+        },
+        {
+          path: 'dataMonitor',
+          name: 'dataMonitor',
+          component: dataMonitor
         }
       ]  
     }
